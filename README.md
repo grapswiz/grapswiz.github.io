@@ -1,2 +1,2 @@
-grapswiz.github.com
+grapswiz.github.io
 ===================
