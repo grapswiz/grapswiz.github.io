@@ -31,7 +31,7 @@
     });
 
     let sendSubscriptionToServer = (subscription) => {
-        fetch("http://push-notification-1075.appspot.com/register", {
+        fetch("//push-notification-1075.appspot.com/register", {
             method: "POST",
             body: subscription.endpoint
         }).then(() => {
