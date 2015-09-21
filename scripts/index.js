@@ -37,7 +37,16 @@
             method: "POST",
             body: subscription.endpoint
         }).then(() => {
-            console.log("post endpoint: " +subscription.endpoint);
+            console.log("register endpoint: " + subscription.endpoint);
+        });
+    };
+
+    let sendUnsubscriptionToServer = (subscription) => {
+        fetch("//push-notification-1075.appspot.com/unregister", {
+            method: "POST",
+            body: subscription.endpoint
+        }).then(() => {
+            console.log("unregister endpoint: " + subscription.endpoint);
         });
     };
 
@@ -118,6 +127,7 @@
 
                 pushSubscription.unsubscribe().then((successful) => {
                     pushButton.disabled = false;
+                    sendUnsubscriptionToServer(pushSubscription);
                     pushButton.textContent = ENABLE_PUSH_MESSAGES;
                     isPushEnabled = false;
                 }).catch((e) => {
