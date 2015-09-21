@@ -46,7 +46,7 @@
         }
 
         if (global.Notification.permission === DENIED) {
-            console.warn("The user has blocked noftifications.");
+            console.warn("The user has blocked notifications.");
             return;
         }
 
