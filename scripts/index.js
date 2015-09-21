@@ -96,6 +96,7 @@
 
         global.navigator.serviceWorker.ready.then((serviceWorkerRegistration) => {
             serviceWorkerRegistration.pushManager.subscribe({userVisibleOnly: true}).then((subscription) => {
+                isPushEnabled = true;
                 pushButton.textContent = DISABLE_PUSH_MESSAGES;
                 pushButton.disabled = false;
 
