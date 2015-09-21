@@ -26,7 +26,9 @@
 
         let sendPushButton = global.document.querySelector(SEND_PUSH_BUTTON);
         sendPushButton.addEventListener(CLICK, () => {
-            //TODO /send_push to your server
+            fetch("//push-notification-1075.appspot.com/send").then(() => {
+                console.log("send");
+            });
         });
     });
 
@@ -35,7 +37,7 @@
             method: "POST",
             body: subscription.endpoint
         }).then(() => {
-            console.log("post endpoint");
+            console.log("post endpoint: " +subscription.endpoint);
         });
     };
 
