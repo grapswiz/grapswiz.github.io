@@ -14,7 +14,6 @@ let parse = (require("csv-parse"));
         let link = global.document.querySelector("link[rel='import']");
         let content = link.import;
         let source = content.querySelector("section");
-        //TODO section1つに10件入れる。
 
         let section = source.cloneNode(true);
         let images = section.querySelectorAll("img");
@@ -36,7 +35,6 @@ let parse = (require("csv-parse"));
 
     let processCsv = (csv) => {
         parse(csv, {}, (err, output) => {
-            console.log(err, output);
             display(output);
         });
     };
