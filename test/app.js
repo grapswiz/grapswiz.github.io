@@ -1,29 +1,25 @@
-document.querySelector("#requestSM1Button").addEventListener("click", () => {
-    navigator.bluetooth.requestDevice({
-    filters: [{
-        namePrefix: "SM1"
-    }]
-})
-    .then(found, error);
-}, false);
-document.querySelector("#requestBlueButton").addEventListener("click", () => {
+let printCharacteristic;
+
+sendTextData = () => {
+    let encoder = new TextEncoder('utf-8');
+};
+
+document.querySelector("#requestButton").addEventListener("click", () => {
     navigator.bluetooth.requestDevice({
         filters: [{
-            namePrefix: "Blue"
+            services: ['000018f0-0000-1000-8000-00805f9b34fb']
         }]
     })
-        .then(found, error);
+        .then(device => {
+            console.log('> Found ' + device.name);
+            console.log('Connecting to GATT Server...');
+            return device.gatt.connect();
+        })
+        .then(server => server.getPrimaryService("000018f0-0000-1000-8000-00805f9b34fb"))
+        .then(service => service.getCharacteristic("00002af1-0000-1000-8000-00805f9b34fb"))
+        .then(characteristic => {
+            printCharacteristic = characteristic;
+            console.log(printCharacteristic);
+        })
+        .catch(error => console.log(error));
 }, false);
-
-function gatt(server) {
-    console.log(server);
-}
-
-function found(device) {
-    console.log(device);
-    device.gatt.connect().then(gatt, error);
-}
-
-function error(e) {
-    console.error(e);
-}
